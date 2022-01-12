@@ -4,7 +4,7 @@
 }
 body{
     color: white;
-    /* background-image: url(./img/snow.jpg) !important; */
+    background-image: url(./img/clear-sky.jpg) !important;
     background-size: cover;
     z-index: 1;
 }
@@ -25,8 +25,14 @@ body::after{
     justify-content: center;
     margin: 50px 0px -50px 0px;
 }
-.css-1s2u09g-control{
-    cursor: text !important;
+.css-1s2u09g-control,
+.css-1pahdxg-control{
+    color: #000000 !important;
+    background-color: rgba(255, 255, 255, 0.438) !important;
+}
+
+#react-select-3-listbox{
+    background-color: rgba(255, 255, 255, 0.904) !important;
 }
 .css-319lph-ValueContainer{
     cursor: text !important;
@@ -172,12 +178,12 @@ button:hover {
     left: 0;
     bottom: 0;
     width: 100%;
-    background-color: rgba(255, 255, 255, 0.459)
+    background-color: rgba(255, 255, 255, 0.459);
 }
 .copy p{
     text-align: center;
     font-family: 'Roboto', sans-serif;
     font-size: 1rem;
-    color: #000000;
+    color: #000000  !important;
     margin: 0.5rem;
 }

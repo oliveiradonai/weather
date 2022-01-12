@@ -2,10 +2,9 @@ import React, { useEffect, useState } from "react";
 import api from "./services/api";
 import localidades from "./data/localidades.json";
 import './App.css';
-import icon from './img/snow-icon.png';
-// import search from './img/search.png';
+import icon from './img/clear-sky-icon.png';
 import Select from 'react-select';
-import {debounce} from 'lodash';
+import { debounce } from 'lodash';
 
 const apiKey = '22b30c4c5d73097d562b1dbdec07f8fb';
 const citySearch = 3451328;
@@ -15,61 +14,69 @@ export default function App() {
   const [cidades, setCidades] = useState();
   const [inputText, setInputText] = useState(null);
 
-  function retornaCidades () {
+  function formatString(textIn) {
+    const textOut = textIn.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+
+    return textOut;
+  }
+
+  function retornaCidades() {
     const objetoCidades = [];
-    localidades.find(element => {
-      if (element.label.indexOf(inputText) > -1) 
-      objetoCidades.push({
-        value: element.value,
-        label: element.label
-      })
+    localidades.find(cidade => {
+      const cityName = formatString(cidade.label)
+      if (cityName.indexOf(inputText) > -1)
+        objetoCidades.push({
+          value: cidade.value,
+          label: cidade.label
+        })
     })
     setCidades(objetoCidades);
-  }  
-  
+  }
+
   const search = debounce(e => {
-    setInputText(e);
+    const formatedString = formatString(e);
+    setInputText(formatedString);
   }, 500)
 
-  useEffect(() =>{
-    if (inputText) 
+  useEffect(() => {
+    if (inputText)
       retornaCidades();
   },
-  [inputText]);
+    [inputText]);
 
-  useEffect(() => {
+  function apiCall(idCidade) {
     api
-      .get(`?id=${citySearch}&units=metric&lang=pt_br&appid=${apiKey}`)
+      .get(`?id=${idCidade}&units=metric&lang=pt_br&appid=${apiKey}`)
       .then((response) => setWeather(response.data))
       .catch((err) => {
         console.error("ops! ocorreu um erro" + err);
       });
+  }
+
+  useEffect(() => {
+    apiCall(citySearch);
   },
     []);
 
-  console.log(weather?.weather[0].id);
-  switch (weather?.weather[0].id) {
-    case 800:
-      document.body.style.backgroundImage = "url(img/few-clouds.jpg)";
-      break;
-  
-    default:
-      document.body.style.backgroundImage = "url(./img/few-clouds.jpg)";
-      break;
-  }    
+  // switch (weather?.weather[0].id) {
+  //   case 800:
+  //     document.body.style.backgroundImage = "url(img/few-clouds.jpg)";
+  //     break;
 
-  // console.log(weather)
+  //   default:
+  //     document.body.style.backgroundImage = "url(./img/few-clouds.jpg)";
+  //     break;
+  // }    
+
+  const background = {
+    backgroundImage: "url(./img/few-clouds.jpg)",
+  };
+
   return (
-    <div className="App">
+    <div style={background} className="App">
       <section className="search-Location">
-        <Select placeholder="Selecione uma localidade..." options = {cidades} onInputChange={search} />
+        <Select placeholder="Selecione uma localidade..." options={cidades} onInputChange={search} id="select-city" onChange={(evento) => apiCall(evento.value)} />
       </section>
-      {/* <section className="search-Location">
-        <input type="search" placeholder="Localização..." name="search" id="search"/>
-        <button type="submit">
-          <img src={search} alt="button"></img>
-        </button>
-      </section> */}
       <section className="weather-Location">
         <h1>
           {weather?.name.toUpperCase()}, {weather?.sys.country}
@@ -84,10 +91,9 @@ export default function App() {
             </h2>
           </section>
           <h3>
-            {weather?.weather[0].description.charAt(0).toUpperCase()}{weather?.weather[0].description.slice(1)} {weather?.weather[0].id}
+            {weather?.weather[0].description.charAt(0).toUpperCase()}{weather?.weather[0].description.slice(1)} {weather?.weather[0].main}
           </h3>
         </section>
-
       </section>
 
       <footer className="copy">
