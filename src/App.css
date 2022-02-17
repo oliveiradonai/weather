@@ -3,10 +3,8 @@
     margin: 0;
 }
 body{
-    color: white;
-    background-image: url(./img/clear-sky.jpg) !important;
-    background-size: cover;
-    z-index: 1;
+    color: #ffff;
+    background-color: #ffff;
 }
 body::after{
     content: '';
@@ -19,6 +17,68 @@ body::after{
     opacity: .5;
     z-index: -1;
 }
+.App{
+    height: 90vh;
+}
+
+/*Classes para background e icon dinâmicos*/
+.cloud--icon{
+	content: url("./img/cloud-icon.png");
+}
+.cloud--bg{
+	background-image: url("./img/few-clouds.jpg");
+    background-size: cover;
+    z-index: 1;
+}
+.thunderstorm--icon{
+	content: url("./img/rain-icon.png");
+}
+.thunderstorm--bg{
+	background-image: url("./img/thunderstorm.jpg");
+    background-size: cover;
+    z-index: 1;
+}
+.drizzle--icon{
+	content: url("./img/rain-icon.png");
+}
+.drizzle--bg{
+	background-image: url("./img/rain.jpg");
+    background-size: cover;
+    z-index: 1;
+}
+.rain--icon{
+	content: url("./img/rain-icon.png");
+}
+.rain--bg{
+	background-image: url("./img/rain.jpg");
+    background-size: cover;
+    z-index: 1;
+}
+.snow--icon{
+	content: url("./img/snow-icon.png");
+}
+.snow--bg{
+	background-image: url("./img/snow.jpg");
+    background-size: cover;
+    z-index: 1;
+}
+.mist--icon{
+	content: url("./img/mist-icon.png");
+}
+.mist--bg{
+	background-image: url("./img/mist.jpg");
+    background-size: cover;
+    z-index: 1;
+}
+.clear--icon{
+	content: url("./img/clear-sky-icon.png");
+}
+.clear--bg{
+	background-image: url("./img/clear-sky.jpg");
+    background-size: cover;
+    z-index: 1;
+}
+
 .search-Location{
     display: flex;
     align-items: center;
@@ -29,6 +89,10 @@ body::after{
 .css-1pahdxg-control{
     color: #000000 !important;
     background-color: rgba(255, 255, 255, 0.438) !important;
+}
+
+.css-14el2xx-placeholder{
+    color: #000000 !important;
 }
 
 #react-select-3-listbox{
@@ -98,9 +162,27 @@ button:hover {
     text-align: center;
 }
 @media only screen and (max-width: 768px) {
-    body {
+    .App{
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        height: 100vh;
+    }
+    .cloud--bg,
+    .thunderstorm--bg,
+    .drizzle--bg,
+    .rain--bg,
+    .snow--bg,
+    .mist--bg,
+    .clear--bg {
         background-size: cover;
         background-repeat: no-repeat;
+        background-position: bottom;
+    }
+    #react-select-3-listbox,
+    .css-b62m3t-container,
+    .css-1s2u09g-control{
+        width: 310px;
     }
     .search-Location{
         margin-top: 30px;
@@ -132,7 +214,7 @@ button:hover {
         font-size: 1.5rem;
     }
     .copy p{
-        margin: 1.5rem !important;
+        margin: 0.7rem !important;
     }
 }
 @media only screen and (max-width: 470px) {
@@ -171,6 +253,17 @@ button:hover {
     .weather-Data h3{
         margin-top: 5px;
         font-size: 1rem;
+    }
+}
+@media only screen and (max-width: 280px) {
+    #react-select-3-listbox,
+    .css-b62m3t-container,
+    .css-1s2u09g-control{
+        width: 200px;
+    }
+    .css-14el2xx-placeholder,
+    .copy p{
+        font-size: 0.9rem !important;
     }
 }
 .copy{
