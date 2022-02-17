@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import api from "./services/api";
-import localidades from "./data/localidades.json";
+import locales from "./data/localidades.json";
 import './App.css';
-import icon from './img/clear-sky-icon.png';
 import Select from 'react-select';
-import { debounce } from 'lodash';
+import { debounce, functionsIn } from 'lodash';
+import $ from 'jquery';
 
 const apiKey = '22b30c4c5d73097d562b1dbdec07f8fb';
 const citySearch = 3451328;
@@ -20,18 +20,53 @@ export default function App() {
     return textOut;
   }
 
-  function retornaCidades() {
-    const objetoCidades = [];
-    localidades.find(cidade => {
+  function returnCities() {
+    const objectCities = [];
+    locales.find(cidade => {
       const cityName = formatString(cidade.label)
       if (cityName.indexOf(inputText) > -1)
-        objetoCidades.push({
+        objectCities.push({
           value: cidade.value,
-          label: cidade.label
+          label: `${cidade.label} - ${cidade.country}`
         })
     })
-    setCidades(objetoCidades);
+    setCidades(objectCities);
   }
+
+  $(document).bind('DOMSubtreeModified', function () {
+    switch (weather?.weather[0].main) {
+      case "Clouds":
+          $('#weather--icon').removeClass().addClass("cloud--icon");
+          $("body").removeClass().addClass("cloud--bg");
+        break;
+      case "Thunderstorm":
+          $('#weather--icon').removeClass().addClass("thunderstorm--icon");
+          $("body").removeClass().addClass("thunderstorm--bg");
+        break;
+      case "Drizzle":
+          $('#weather--icon').removeClass().addClass("drizzle--icon");
+          $("body").removeClass().addClass("drizzle--bg");
+        break;
+      case "Rain":
+          $('#weather--icon').removeClass().addClass("rain--icon");
+          $("body").removeClass().addClass("rain--bg");
+        break;
+      case "Snow":
+          $('#weather--icon').removeClass().addClass("snow--icon");
+          $("body").removeClass().addClass("snow--bg");
+        break;
+      case "Mist":
+          $('#weather--icon').removeClass().addClass("mist--icon");
+          $("body").removeClass().addClass("mist--bg");
+        break;
+      case "Clear":
+          $('#weather--icon').removeClass().addClass("clear--icon");
+          $("body").removeClass().addClass("clear--bg");
+        break;    
+      default:         
+        break;
+    }
+  });
 
   const search = debounce(e => {
     const formatedString = formatString(e);
@@ -40,7 +75,7 @@ export default function App() {
 
   useEffect(() => {
     if (inputText)
-      retornaCidades();
+      returnCities();
   },
     [inputText]);
 
@@ -58,22 +93,8 @@ export default function App() {
   },
     []);
 
-  // switch (weather?.weather[0].id) {
-  //   case 800:
-  //     document.body.style.backgroundImage = "url(img/few-clouds.jpg)";
-  //     break;
-
-  //   default:
-  //     document.body.style.backgroundImage = "url(./img/few-clouds.jpg)";
-  //     break;
-  // }    
-
-  const background = {
-    backgroundImage: "url(./img/few-clouds.jpg)",
-  };
-
   return (
-    <div style={background} className="App">
+    <div className="App">
       <section className="search-Location">
         <Select placeholder="Selecione uma localidade..." options={cidades} onInputChange={search} id="select-city" onChange={(evento) => apiCall(evento.value)} />
       </section>
@@ -85,19 +106,19 @@ export default function App() {
       <section className="weather-Data">
         <section className="weather-Temp">
           <section className="top">
-            <img src={icon} alt="weather-icon" />
+            <img id="weather--icon" alt="weather-icon" />
             <h2>
               {Math.floor(weather?.main.temp)}°C
             </h2>
           </section>
           <h3>
-            {weather?.weather[0].description.charAt(0).toUpperCase()}{weather?.weather[0].description.slice(1)} {weather?.weather[0].main}
+            {weather?.weather[0].description.charAt(0).toUpperCase()}{weather?.weather[0].description.slice(1)}
           </h3>
         </section>
       </section>
 
       <footer className="copy">
-        <p>&copy; 2021 Todos os direitos reservados - Desenvolvido por Adonai Figueiredo</p>
+        <p>&copy; 2022 Todos os direitos reservados - Desenvolvido por Adonai Figueiredo</p>
       </footer>
     </div>
   );
