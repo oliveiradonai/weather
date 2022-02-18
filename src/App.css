@@ -172,13 +172,13 @@ button:hover {
         padding-top: 30px;
         margin: 0;
     }
-    .cloud--bg,
-    .thunderstorm--bg,
-    .drizzle--bg,
-    .rain--bg,
-    .snow--bg,
-    .mist--bg,
-    .clear--bg {
+    #Clouds,
+    #Thunderstorm,
+    #Drizzle,
+    #Rain,
+    #Snow,
+    #Mist,
+    #Clear {
         background-size: cover;
         background-repeat: no-repeat;
         background-position: bottom;
