@@ -18,62 +18,62 @@ body::after{
     z-index: -1;
 }
 .App{
-    height: 90vh;
+    height: 100vh;
 }
 
 /*Classes para background e icon dinâmicos*/
-.cloud--icon{
+.Clouds{
 	content: url("./img/cloud-icon.png");
 }
-.cloud--bg{
+#Clouds{
 	background-image: url("./img/few-clouds.jpg");
     background-size: cover;
     z-index: 1;
 }
-.thunderstorm--icon{
+.Thunderstorm{
 	content: url("./img/rain-icon.png");
 }
-.thunderstorm--bg{
+#Thunderstorm{
 	background-image: url("./img/thunderstorm.jpg");
     background-size: cover;
     z-index: 1;
 }
-.drizzle--icon{
+.Drizzle{
 	content: url("./img/rain-icon.png");
 }
-.drizzle--bg{
+#Drizzle{
 	background-image: url("./img/rain.jpg");
     background-size: cover;
     z-index: 1;
 }
-.rain--icon{
+.Rain{
 	content: url("./img/rain-icon.png");
 }
-.rain--bg{
+#Rain{
 	background-image: url("./img/rain.jpg");
     background-size: cover;
     z-index: 1;
 }
-.snow--icon{
+.Snow{
 	content: url("./img/snow-icon.png");
 }
-.snow--bg{
+#Snow{
 	background-image: url("./img/snow.jpg");
     background-size: cover;
     z-index: 1;
 }
-.mist--icon{
+.Mist{
 	content: url("./img/mist-icon.png");
 }
-.mist--bg{
+#Mist{
 	background-image: url("./img/mist.jpg");
     background-size: cover;
     z-index: 1;
 }
-.clear--icon{
+.Clear{
 	content: url("./img/clear-sky-icon.png");
 }
-.clear--bg{
+#Clear{
 	background-image: url("./img/clear-sky.jpg");
     background-size: cover;
     z-index: 1;
@@ -83,7 +83,7 @@ body::after{
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 50px 0px -50px 0px;
+    padding-top: 50px;
 }
 .css-1s2u09g-control,
 .css-1pahdxg-control{
@@ -168,6 +168,10 @@ button:hover {
         flex-direction: column;
         height: 100vh;
     }
+    .search-Location{
+        padding-top: 30px;
+        margin: 0;
+    }
     .cloud--bg,
     .thunderstorm--bg,
     .drizzle--bg,
@@ -183,9 +187,6 @@ button:hover {
     .css-b62m3t-container,
     .css-1s2u09g-control{
         width: 310px;
-    }
-    .search-Location{
-        margin-top: 30px;
     }
     .search-Location input[type=search]{
         font-size: 1.3rem;
@@ -221,9 +222,6 @@ button:hover {
     body {
         background-size: cover;
         background-repeat: no-repeat;
-    }
-    .search-Location{
-        margin-top: 30px;
     }
     .search-Location input[type=search]{
         font-size: 1rem;
