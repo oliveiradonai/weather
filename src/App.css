@@ -137,10 +137,10 @@ button:hover {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: 100px;
+    margin-top: 40px;
 }
 .weather-Data {
-    margin-top: 50px;
+    margin-top: 40px;
 }
 .weather-Data .top{
     display: flex;
@@ -197,7 +197,7 @@ button:hover {
         font-size: 1.3rem;
     }
     .weather-Location{
-        margin-top: 75px;
+        margin-top: 40px;
         font-size: 0.6rem;
         letter-spacing: 5px;
     }
@@ -235,7 +235,7 @@ button:hover {
       height: 17px;
     }
     .weather-Location{
-        margin-top: 75px;
+        margin-top: 40px;
         font-size: 0.6rem;
         letter-spacing: 3px;
     }
